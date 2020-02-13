@@ -1,0 +1,804 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notas dev</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="welcome-madacode-stackedit">Welcome madacode StackEdit</h1>
+<p>Hola! si viniste aquí debes estar buscando alguna pequeña ayuda en recordar algún comando o función ya que te da flojera buscarlo en stack, pero no importa , éntrale con toda confianza. Este archivo se actualizara cada cierto tiempo.<br>
+<img src="https://cdn.discordapp.com/attachments/667144423397654548/674255168585465887/loo.png" alt="enter image description here"></p>
+<h1 id="git">Git</h1>
+<blockquote>
+<h2 id="instalación-y-configuración-de-git">Instalación y configuración de Git!</h2>
+</blockquote>
+<p>Si estás en Windows, puedes descargarlo directamente desde aquí:</p>
+<ul>
+<li><a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></li>
+</ul>
+<p>Una vez instalado , puedes configurar tu identidad ejecutando en la terminal (si estás en windows se te habrá instalado un programa llamado Git bash):</p>
+<pre><code>git  config  --global  user.name  "Tu nombre aquí"
+
+git  config  --global  user.email  ejemplo@example.com
+</code></pre>
+<blockquote>
+<p>Nota: Ademas si usas Visual Studio Code es buena idea instalar la siguiente extension para ayudar en los commit<br>
+<a href="https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-github">https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-github</a></p>
+</blockquote>
+<blockquote>
+<h2 id="comandos-basicos">Comandos basicos</h2>
+</blockquote>
+<p>El primer paso es abrir la terminal de git, o la terminal de nuestro sistema, para dirigirnos a la carpeta donde tengamos guardado el proyecto que estemos desarrollando, y ejecutar el siguiente comando:</p>
+<pre><code>	git init
+</code></pre>
+<p>Ahora podemos continuar desarrollando nuestro proyecto.<br>
+<img src="https://cdn.discordapp.com/attachments/297226492406923264/674254630720634880/587169816805376025.png" alt="enter image description here"></p>
+<p>Cuando queramos guardar los cambios con git tenemos que hacer lo siguiente:</p>
+<pre><code>    git status
+</code></pre>
+<p>Este comando git imprimirá los archivos que van a ser guardados, el siguiente paso es ejecutar:</p>
+<pre><code>    git add  .
+</code></pre>
+<p>Con esto añadiremos todos los archivos que aparecían anteriormente para ser guardados. Si queremos añadir un archivo o carpeta en concreto lo podemos hacer mediante</p>
+<pre><code>   git add NOMBREDELARCHIVO
+</code></pre>
+<p>Si queremos eliminar los archivos que acabamos de añadir para ser guardados lo podemos hacer con</p>
+<pre><code>	  git rm  .
+</code></pre>
+<p>Con estos comandos hemos añadido o hemos quitado archivos pero aún no han sido guardados, para ello:</p>
+<pre><code>	git commit -m  "Nombre descriptivo del cambio que hemos realizado"
+</code></pre>
+<p>Acabamos de hacer nuestro primer commit, un commit es un guardado con mensaje de los cambios que hemos realizado en un momento determinado en nuestro proyecto. Normalemente el flujo de trabajo con git para el día a día consiste en hacer git status para ver la lista de cambios, git add de todos los archivos o de los que queramos, y por último hacer commit.</p>
+<p>Para imprimir todos los commits que hemos realizado tenemos el comando de git:</p>
+<pre><code>    git log
+</code></pre>
+<p>La cadena de números y letras que aparece al lado de la palabra “commit” es el identificador que podemos usar para revertir los cambios y volver atrás a ese punto. Para ello ejecutamos:</p>
+<pre><code>    git reset --hard IDENTIFICADOR
+</code></pre>
+<p>Sustituimos IDENTIFICADOR por el identificador que comentaba anteriormente, eliminando así, todos los commits posteriores a ese commit.</p>
+<p>Con  <em>git revert</em>  se crea un nuevo commit que revierte los cambios realizados en el último commit, pero no elimina dicho commit.</p>
+<p>Si quires ver los cambios que has realizado desde el último commit lo puedes hacer con:</p>
+<pre><code>    git diff
+</code></pre>
+<h2 id="administrando-proyectos-git">Administrando proyectos Git</h2>
+<p>Ahora, imaginemos que queremos administrar un proyecto ubicado en otro servidor o en un almacén de repositorios como es Github.</p>
+<p>Por ejemplo, para GitHub:</p>
+<pre><code>    git clone https://github.com/proyectogithub
+</code></pre>
+<p>Si alguien hace un cambio desde otro sitio a este mismo repositorio, tenemos que bajarnos el cambio a nuestra máquina, para ello:</p>
+<pre><code>    git pull
+</code></pre>
+<p>Pero, si tenemos cambios sin guardar, tenemos que guardarlos haciendo commit, antes de bajarnos nada.</p>
+<p>Tras hacer commit de cambios nuevos, podemos subirlos al repositorio remoto:</p>
+<pre><code>    git push origin master
+</code></pre>
+<p>Donde origin es la dirección del repositiorio remoto y master es la rama a la que estamos subiendo los cambios.</p>
+<p>Para añadir la dirección de un repositorio remoto a origin, lo podemos hacer así:</p>
+<pre><code>    git remote add origin https://github.com/user/repo.git
+</code></pre>
+<h2 id="ramas-en-git">Ramas en git</h2>
+<p>Muy bien, pero antes has dicho que has subido los cambios a una rama, ¿qué es una rama?<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/675839236997644331/sayo.gif" alt="enter image description here"><br>
+Las ramas sirven para llevar un control de cambios independiente en el mismo repositorio, es decir, podemos crear una rama a partir de la rama base, o rama master, con otra serie de cambios, posteriormente podemos subir estos cambios a la rama master haciendo una combinación de ambas ramas:</p>
+<pre><code>    git push origin master
+</code></pre>
+<p>En verde, saldrán las líneas que has añadido, y en rojo las que has eliminado desde la última vez.</p>
+<p>Para posicionarnos en una rama escribe:</p>
+<pre><code>    git checkout nombre_de_la_rama
+</code></pre>
+<p>Y para crear una rama:</p>
+<pre><code>    git checkout -b rama_nueva
+</code></pre>
+<p>Para combinar ramas, es decir, git va a tratar de hacer una fusión de los cambios de ambas ramas, si llega a una línea que se ha cambiado en los dos sitios a la vez al no saber que cambio es el que el usuario quiere saltará un conflicto de git. Para arreglarlo tienes que decidir que cambio quieres conservar y volver a pushear para hacer el merge:</p>
+<pre><code>    git merge hotfix
+</code></pre>
+<p>Este comando mergea los cambios de la rama llamada <strong>hotfix</strong> a la rama en la que nos encontremos. Puedes ver en qué rama te encuentras si ejecutas:</p>
+<pre><code>    git brach
+</code></pre>
+<p>Normalmente las ramas en git se utilizan para asilar funcionalidades, es decir, creamos una rama con el nombre de una funcionalidad, hacemos todos los commits que queramos y al finalizar la funcionalidad hacemos un merge de ramas. Esto permite tener equipos trabajando independientemente a la vez en el mismo proyecto sin pisar funcionalidad, esta estrategia se conoce como <strong>git flow</strong>. Puedes consultar más información de esto en este enlace: <a href="http://aprendegit.com/que-es-git-flow/">http://aprendegit.com/que-es-git-flow/</a></p>
+<h2 id="comandos-avanzados">Comandos avanzados</h2>
+<p><img src="https://cdn.discordapp.com/attachments/297226492406923264/674254580326072338/585567202154119183.png" alt="enter image description here"></p>
+<h4 id="cómo-crear-alias-en-git">Cómo crear alias en git</h4>
+<p>Para no tener que estar escribiendo todo el rato “commit” o “checkout” podemos crear alias, los alias de git sirven para decirle a git que comando tiene que ejecutar para el alias que le hemos indicado, estos son los alias más comunes, aunque puedes crear y configurar más. Personalmente considero los alias imprescindibles.</p>
+<pre><code>git  config  --global  alias.co  checkout  git  config  --global  alias.br  branch  git  config  --global  alias.ci  commit  git  config  --global  alias.st  status
+</code></pre>
+<p>De esta forma, al escribir  <em>git st</em>, git ejecutará el comando  <em>git status</em>  ahorrándonos mucho tiempo.</p>
+<h4 id="descartar-temporalmente-cambios">Descartar temporalmente cambios</h4>
+<p>Si estas trabajando en una rama y quieres cambiarte a otra, git no te dejará porque tienes cambios sin guardar, una forma de solucionar esto es haciendo un commit, pero si no queremos hacerlo lo que podemos hacer es descartar los cambios temporalmente, para ello:</p>
+<pre><code>    git stash
+</code></pre>
+<p>Posteriormente si los quieres recuperar:</p>
+<pre><code>    git stash pop
+</code></pre>
+<p>Este comando git es de los más útiles para no tener que estar guardando cosas momentáneamente en otros sitios si te quieras cambiar rápido de rama</p>
+<h4 id="pull-de-un-solo-commit">Pull de un solo commit</h4>
+<p>Si por cualquier motivo, necesitas hacer un pull pero solo de un determinado commit lo que puedes hacer es usar este comando:</p>
+<pre><code>    git cherry-pick &lt;commitSHA&gt;
+</code></pre>
+<h4 id="git-log-avanzado">Git log avanzado</h4>
+<p>Hay veces en las que el comando git log ofrece demasiada información, pero esto se puede personalizar, por ejemplo:</p>
+<pre><code>    git log  --online
+</code></pre>
+<p>Se imprimirá en cada linea un commit, con su identificador y el texto del commit.</p>
+<p>Otro parámetro bastante útil del log es el de git graph</p>
+<pre><code>    git log  --graph  --oneline
+</code></pre>
+<p>Esto imprimira la lista de commits y mediante caracteres ASCII, representara el árbol con las ramas y los cambios entre ellas.</p>
+<p>También podemos filtrar los commits, por ejemplo:</p>
+<pre><code>git log  --author="John" git log  --after="2014-7-1" git log  -- foo.py bar.py
+</code></pre>
+<blockquote>
+<p>BIEN!  esto es ya en si es GIT  ,  no fue tan complicado verdad? con saber los comandos básicos junto con tener las extensiones de visual ya te podrías considerar un experto, <em>maybe</em>.</p>
+</blockquote>
+<p><img src="https://cdn.discordapp.com/attachments/439567369589751808/674257666117337098/loo2.png" alt="enter image description here"></p>
+<h1 id="js">JS</h1>
+<p><img src="https://cdn.discordapp.com/attachments/675751591323893764/675838642882609152/writi.gif" alt="enter image description here"></p>
+<h3 id="variables">Variables</h3>
+<p>Variables con <strong>var</strong>: el nombre la variable debe ser entendible sobre lo que realiza y<br>
+no colocar caracteres raros o números, se puede inicializar vacia (undefinded) como con un valor.</p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">var</span>  learning <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>learning<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token comment">//Output true</span>
+</code></pre>
+<p>Variables con <strong>const</strong>: Siempre debe tener un valor de inicio, sus valores NUNCA cambian, se usa en mayoría para seleccionar elemento de la interfaz web</p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">const</span>  learningconst <span class="token operator">=</span> <span class="token string">"javascript"</span><span class="token punctuation">;</span>
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>learningconst<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token comment">//Output javascript</span>
+
+</code></pre>
+<p>Variables con <strong>let</strong>: es similar a var, puede inicializar vacío, con valor y cambiar su valor.</p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">let</span>  learninglet <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>learninglet<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token comment">//Output true</span>
+</code></pre>
+<h3 id="scope">Scope</h3>
+<p><strong>Scope</strong> de una variable permite saber en que parte de tu programa un valor<br>
+de una variable esta disponible o no esta disponible</p>
+<pre class=" language-js"><code class="prism  language-js">     <span class="token keyword">var</span> music <span class="token operator">=</span> <span class="token string">'rock'</span><span class="token punctuation">;</span>
+     <span class="token keyword">if</span><span class="token punctuation">(</span>music<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	    <span class="token keyword">var</span> music <span class="token operator">=</span> <span class="token string">'pop'</span><span class="token punctuation">;</span>
+		    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'dentro del if: '</span><span class="token punctuation">,</span> music<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	   <span class="token punctuation">}</span>
+	   
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'fuera del if: '</span><span class="token punctuation">,</span> music<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// Output dentro del if: pop - fuera del if: pop</span>
+</code></pre>
+<p><strong>Scope con let</strong> : para evitar que se mezcle como arriba como tambien en var, se suele usar let.</p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">let</span>  music <span class="token operator">=</span> <span class="token string">'rock'</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>music<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span>  music <span class="token operator">=</span> <span class="token string">'pop'</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'dentro del if: '</span><span class="token punctuation">,</span> music<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'fuera del if: '</span><span class="token punctuation">,</span> music<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+      
+    
+    <span class="token comment">//Output dentro del if: pop - fuera del if: rock - esta respuesta es la esperada a diferencia de arriba</span>
+
+</code></pre>
+<h3 id="template-strings">Template strings</h3>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">const</span>  name <span class="token operator">=</span> <span class="token string">'madacode'</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span>  job <span class="token operator">=</span> <span class="token string">'dev'</span><span class="token punctuation">;</span>
+    <span class="token comment">//concatenar js, forma VIEJA por lo cual NO usar</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Nombre: '</span><span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">', Trabajo:'</span> <span class="token operator">+</span> job<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">//concatenar en la nueva version</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`Nombre: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> , Trabajo: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>job<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">//concatenar con multiples lineas forma NUEVA con template strings</span>
+	
+	<span class="token keyword">const</span>  contenedorApp <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//Aca seleccionamos el div del html que queremos modificar</span>
+
+		<span class="token keyword">let</span>  html <span class="token operator">=</span> <span class="token template-string"><span class="token string">`	&lt;ul&gt;
+							&lt;li&gt;Nombre: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/li&gt;
+							&lt;li&gt;Trabajo: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>job<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/li&gt;
+						&lt;/ul&gt;
+					`</span></span><span class="token punctuation">;</span>
+
+	contenedorApp<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> html<span class="token punctuation">;</span>
+
+</code></pre>
+<h3 id="funciones">Funciones</h3>
+<p>Lo principal es que funcione para ser reutilizable</p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">function</span>  <span class="token function">saludar</span><span class="token punctuation">(</span> nombre <span class="token punctuation">)</span><span class="token punctuation">{</span>   
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'bienvenido'</span> <span class="token operator">+</span> nombre<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>
+	    <span class="token function">saludar</span><span class="token punctuation">(</span><span class="token string">'Juan'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">//Function declaration , para llamar una función</span>
+     <span class="token keyword">function</span>  <span class="token function">saludar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>   
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'bienvenido'</span> <span class="token operator">+</span> nombre<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>
+	    <span class="token function">saludar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">//Function expression, se suele usar en react</span>
+	  <span class="token keyword">const</span>  <span class="token function-variable function">cliente</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>nombre<span class="token punctuation">)</span><span class="token punctuation">{</span>
+		console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'el nombre es: '</span><span class="token operator">+</span>nombre<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token function">cliente</span><span class="token punctuation">(</span><span class="token string">'juan'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<blockquote>
+<p>En function declaration puedes llamar la función donde sea  , antes<br>
+del código , en expression <strong>no</strong>, se deben declarar las funciones<br>
+antes de utilizarlas!</p>
+</blockquote>
+<h4 id="funciones-con-parámetros">Funciones con parámetros</h4>
+<p>Parámetros por default en las funciones, ejemplo con function expression</p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">const</span>  <span class="token function-variable function">actividad</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>nombre <span class="token operator">=</span><span class="token string">'walter white'</span><span class="token punctuation">,</span>deporte <span class="token operator">=</span><span class="token string">'Basket'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    
+		    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`El </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>nombre<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> esta jugando </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>deporte<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">actividad</span><span class="token punctuation">(</span><span class="token string">'Juan'</span><span class="token punctuation">,</span><span class="token string">'Futbol'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">actividad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// aca saldra walter white por defecto ya que no existe nada</span>
+</code></pre>
+<h4 id="arrow-functions">Arrow Functions</h4>
+<p>En react es el que utilizaremos mas , es una function expression pero con código mas simplificado</p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">let</span>  <span class="token function-variable function">viajando</span> <span class="token operator">=</span> <span class="token punctuation">(</span>destino<span class="token punctuation">,</span>duracion<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>  <span class="token template-string"><span class="token string">`Viajando a </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>destino<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> por </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>duracion<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> dias.`</span></span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span>  viaje<span class="token punctuation">;</span>
+    
+    viaje <span class="token operator">=</span> <span class="token function">viajando</span><span class="token punctuation">(</span><span class="token string">'Japon'</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>viaje<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token comment">//Output viajando a Japon por 9 dias.</span>
+
+</code></pre>
+<h3 id="objetos-en-javascript">Objetos en Javascript</h3>
+<p><img src="https://cdn.discordapp.com/attachments/675751591323893764/675847945756606485/670706487500210196.gif" alt="enter image description here"></p>
+<p><strong>Object literal</strong>: nos permite crear objetos estaticos</p>
+<pre class=" language-js"><code class="prism  language-js">  
+	    <span class="token keyword">const</span>  persona <span class="token operator">=</span> <span class="token punctuation">{</span>
+		    nombre<span class="token punctuation">:</span>  <span class="token string">'juan'</span><span class="token punctuation">,</span>
+		    deporte<span class="token punctuation">:</span>  <span class="token string">'Futbol'</span><span class="token punctuation">,</span>
+		    edad<span class="token punctuation">:</span>  <span class="token number">22</span>
+	    <span class="token punctuation">}</span>
+    
+	   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>persona<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>persona<span class="token punctuation">.</span>edad<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//como acceder a una propiedad del objeto</span>
+
+</code></pre>
+<p>Output:<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676112696969658368/unknown.png" alt="enter image description here"></p>
+<p><strong>Object constructor</strong>: nos permite crear objetos dinámico, su ventaja al anterior es que te permite crear multiples objetos.</p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">function</span>  <span class="token function">Tarea</span><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span>urgencia<span class="token punctuation">)</span><span class="token punctuation">{</span>
+	   <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+	   <span class="token keyword">this</span><span class="token punctuation">.</span>urgencia <span class="token operator">=</span> urgencia<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//Crear una nueva tarea</span>
+	    <span class="token keyword">const</span>  tarea1 <span class="token operator">=</span> <span class="token keyword">new</span>  <span class="token class-name">Tarea</span><span class="token punctuation">(</span><span class="token string">'Aprender js'</span><span class="token punctuation">,</span><span class="token string">'Urgente'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tarea1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tarea1<span class="token punctuation">.</span>nombre<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//como acceder a la propiedad del objeto</span>
+</code></pre>
+<p>Output:<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676119642132971530/unknown.png" alt="enter image description here"></p>
+<p><strong>Prototypes:</strong></p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">function</span>  <span class="token function">Tarea</span><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span>urgencia<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>urgencia <span class="token operator">=</span> urgencia<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//agregar un prototype a tarea, para atar funcion a los objetos de tarea</span>
+    
+    Tarea<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">mostrarInfoTarea</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	    <span class="token keyword">return</span>  <span class="token template-string"><span class="token string">`La tarea </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>nombre<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> tiene prioridad </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>urgencia<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//Crear una nueva tarea</span>
+    <span class="token keyword">const</span>  tarea1 <span class="token operator">=</span> <span class="token keyword">new</span>  <span class="token class-name">Tarea</span><span class="token punctuation">(</span><span class="token string">'Aprender js'</span><span class="token punctuation">,</span><span class="token string">'Urgente'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tarea1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tarea1<span class="token punctuation">.</span><span class="token function">mostrarInfoTarea</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Output:<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676145890771075102/unknown.png" alt="enter image description here"></p>
+<p><strong>Object destructuring :</strong> Es como extraes los valores de un objeto.</p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">const</span>  aprendiendoJs <span class="token operator">=</span> <span class="token punctuation">{</span>
+	    version <span class="token punctuation">:</span> <span class="token punctuation">{</span>
+		    nueva<span class="token punctuation">:</span>  <span class="token string">'ES6'</span><span class="token punctuation">,</span>
+		    anterior<span class="token punctuation">:</span>  <span class="token string">'ES5'</span>
+		  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+		frameworks<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'React'</span><span class="token punctuation">,</span><span class="token string">'Vuejs'</span><span class="token punctuation">,</span><span class="token string">'Angular'</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+	 <span class="token comment">//Destrcturing es extraer valores de un objeto</span>
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>aprendiendoJs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">//Version NUEVA</span>
+    <span class="token keyword">let</span><span class="token punctuation">{</span>version<span class="token punctuation">,</span>frameworks<span class="token punctuation">}</span> <span class="token operator">=</span> aprendiendoJs<span class="token punctuation">;</span> <span class="token comment">//tomar ver,fram, de aprendiendojs</span>
+    
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>version<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>frameworks<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//o si deseo tomar solo nueva</span>
+    <span class="token keyword">let</span><span class="token punctuation">{</span>nueva<span class="token punctuation">}</span> <span class="token operator">=</span> aprendiendoJs<span class="token punctuation">.</span>version<span class="token punctuation">;</span>
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>nueva<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Output:<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676193104260235300/unknown.png" alt="enter image description here"></p>
+<p><strong>Object literal:</strong> Como unes distintas variables dentro de un objeto,  este coloca los valores juntos.</p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">const</span>  banda <span class="token operator">=</span> <span class="token string">'Roselia'</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span>  genero <span class="token operator">=</span> <span class="token string">'Rock'</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span>  canciones <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Fire bird'</span><span class="token punctuation">,</span><span class="token string">'Black shout'</span><span class="token punctuation">,</span><span class="token string">'Ringing'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">//Forma nueva</span>
+	     <span class="token keyword">const</span>  Roselia <span class="token operator">=</span> <span class="token punctuation">{</span>banda<span class="token punctuation">,</span>genero<span class="token punctuation">,</span>canciones<span class="token punctuation">}</span><span class="token punctuation">;</span>
+		     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Roselia<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+<p>Output:<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676209607051444225/unknown.png" alt="enter image description here"></p>
+<blockquote>
+<p>En resumen: Para extraer valores de un objeto es lo que se le conoce<br>
+como destructuring y para ponerlos juntos en un solo objeto se le<br>
+conoce como Object literal enhancement.<br>
+<img src="https://steamuserimages-a.akamaihd.net/ugc/246962430144157204/4A870B7B8634F84D414F7B333B0D6578B0EB4BF3/" alt="enter image description here"></p>
+</blockquote>
+<p>Como agregar funciones a un objeto?</p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">const</span>  persona <span class="token operator">=</span> <span class="token punctuation">{</span>
+	    nombre <span class="token punctuation">:</span>  <span class="token string">'Yukina'</span><span class="token punctuation">,</span>
+	    trabajo<span class="token punctuation">:</span>  <span class="token string">'Cantante'</span><span class="token punctuation">,</span>
+	    edad<span class="token punctuation">:</span>  <span class="token number">17</span><span class="token punctuation">,</span>
+	    musicaRock<span class="token punctuation">:</span>  <span class="token boolean">true</span><span class="token punctuation">,</span>
+    
+    <span class="token function">mostrarInformacion</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>nombre<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> es </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>trabajo<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> y su edad es </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>edad<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span>
+	    <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    persona<span class="token punctuation">.</span><span class="token function">mostrarInformacion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+<p>Output:<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676212724522287110/unknown.png" alt="enter image description here"></p>
+<blockquote>
+<p><strong>this</strong> es la manera en la que accedes a los valores del mismo objeto.</p>
+</blockquote>
+<p><strong>Map</strong>: Conserva el arreglo original y devuelve un nuevo arreglo.</p>
+<pre class=" language-js"><code class="prism  language-js">    carrito <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Jamon'</span><span class="token punctuation">,</span><span class="token string">'Queso'</span><span class="token punctuation">,</span><span class="token string">'Atun'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	    carrito<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>producto  <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+		    <span class="token keyword">return</span>  <span class="token string">'El producto es : '</span> <span class="token operator">+</span>producto<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Output:<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676238342957826051/unknown.png" alt=""></p>
+<p><strong>Objet Keys</strong></p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">const</span>  persona <span class="token operator">=</span> <span class="token punctuation">{</span>
+	    nombre<span class="token punctuation">:</span>  <span class="token string">'Sayo'</span><span class="token punctuation">,</span>
+	    profesion<span class="token punctuation">:</span>  <span class="token string">'Guitarrista'</span><span class="token punctuation">,</span>
+	    edad<span class="token punctuation">:</span>  <span class="token number">17</span>
+    <span class="token punctuation">}</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>persona<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Output:<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676258637991247902/unknown.png" alt="enter image description here"></p>
+<p><strong>Spread operator:</strong> Sirve para muchas tareas , permite combinar dos arreglos diferentes.</p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">let</span>  lenguajes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Java'</span><span class="token punctuation">,</span><span class="token string">'PHP'</span><span class="token punctuation">,</span><span class="token string">'Python'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span>  frameworks <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'ReactJS'</span><span class="token punctuation">,</span><span class="token string">'Laravel'</span><span class="token punctuation">,</span><span class="token string">'Django'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">//Unir los array en uno solo</span>
+	 
+	<span class="token keyword">let</span>  combinacion <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>lenguajes<span class="token punctuation">,</span><span class="token operator">...</span>frameworks<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>combinacion<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Output:<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676261741335674912/unknown.png" alt="enter image description here"></p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">let</span>  lenguajes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Java'</span><span class="token punctuation">,</span><span class="token string">'PHP'</span><span class="token punctuation">,</span><span class="token string">'Python'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+     <span class="token comment">//Spread</span>
+    <span class="token keyword">let</span> <span class="token punctuation">[</span>ultimo<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>lenguajes<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>ultimo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Output:<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676266282252894212/unknown.png" alt="enter image description here"></p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token comment">//Spear operator</span>
+    
+      <span class="token keyword">function</span>  <span class="token function">suma</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    		console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token operator">+</span>b<span class="token operator">+</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">const</span>  numeros <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">suma</span><span class="token punctuation">(</span><span class="token operator">...</span>numeros<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Output:<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676269379922690069/unknown.png" alt="enter image description here"></p>
+<p>.<strong>filter . find  y .reducer:</strong> Métodos disponibles en arreglos</p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token comment">//Arreglo de objetos</span>
+    <span class="token keyword">const</span>  personas <span class="token operator">=</span> <span class="token punctuation">[</span>
+	    <span class="token punctuation">{</span>nombre<span class="token punctuation">:</span>  <span class="token string">'Hina'</span><span class="token punctuation">,</span> edad<span class="token punctuation">:</span><span class="token number">17</span><span class="token punctuation">,</span>aprendiendo<span class="token punctuation">:</span><span class="token string">'guitarra'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	    <span class="token punctuation">{</span>nombre<span class="token punctuation">:</span>  <span class="token string">'Sayo'</span><span class="token punctuation">,</span> edad<span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">,</span>aprendiendo<span class="token punctuation">:</span><span class="token string">'guitarra'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	    <span class="token punctuation">{</span>nombre<span class="token punctuation">:</span>  <span class="token string">'Yukina'</span><span class="token punctuation">,</span> edad<span class="token punctuation">:</span><span class="token number">22</span><span class="token punctuation">,</span>aprendiendo<span class="token punctuation">:</span><span class="token string">'canto'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	    <span class="token punctuation">{</span>nombre<span class="token punctuation">:</span>  <span class="token string">'Ako'</span><span class="token punctuation">,</span> edad<span class="token punctuation">:</span><span class="token number">15</span><span class="token punctuation">,</span>aprendiendo<span class="token punctuation">:</span><span class="token string">'bateria'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	    <span class="token punctuation">{</span>nombre<span class="token punctuation">:</span>  <span class="token string">'Rinko'</span><span class="token punctuation">,</span> edad<span class="token punctuation">:</span><span class="token number">18</span><span class="token punctuation">,</span>aprendiendo<span class="token punctuation">:</span><span class="token string">'piano'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>personas<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	  
+	   <span class="token comment">//Mayores de 18 años, persona para acceder a cada registro individual, necesito una variable donde se registren los mayores , creo el const mayores</span>
+    
+    <span class="token keyword">const</span>  mayores <span class="token operator">=</span> personas<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>persona  <span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+	    <span class="token keyword">return</span>  persona<span class="token punctuation">.</span>edad <span class="token operator">&gt;</span> <span class="token number">18</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mayores<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">//Que aprende yukina</span>
+    
+    <span class="token keyword">const</span>  yukina <span class="token operator">=</span> personas<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>persona  <span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+	    <span class="token keyword">return</span>  persona<span class="token punctuation">.</span>nombre <span class="token operator">===</span> <span class="token string">'Yukina'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'yukina esta aprendiendo: '</span> <span class="token operator">+</span> yukina<span class="token punctuation">.</span>aprendiendo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+      <span class="token comment">//Total de las edades de todas las personas</span>
+    
+    <span class="token keyword">let</span>  total <span class="token operator">=</span> personas<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span>edadTotal<span class="token punctuation">,</span> persona<span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+	    <span class="token keyword">return</span>  edadTotal <span class="token operator">+</span> persona<span class="token punctuation">.</span>edad<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>total<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>personas<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//cuantas personas son</span>
+
+</code></pre>
+<p>Output:<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676455897735757854/unknown.png" alt="enter image description here"></p>
+<h3 id="promises">Promises</h3>
+<p>Nos van a ayudar a entender mejor el código cuando realizamos llamados async a una API por ejemplo</p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">const</span>  aplicarDescuento <span class="token operator">=</span> <span class="token keyword">new</span>  <span class="token class-name">Promise</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span>reject<span class="token punctuation">)</span> <span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+	    <span class="token keyword">let</span>  descuento <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>descuento<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	    <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'Descuento aplicado!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+		<span class="token function">reject</span><span class="token punctuation">(</span><span class="token string">'No se aplico descuento'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		    <span class="token punctuation">}</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    aplicarDescuento<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>resultado  <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>resultado<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>error  <span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+	    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//Output  Descuento aplicado</span>
+</code></pre>
+<p><strong>Promise con ajax</strong> para hacer un llamado a una API<br>
+Api a usar <a href="https://randomuser.me/api/?results=25&amp;nat=us">https://randomuser.me/api/?results=25&amp;nat=us</a></p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">const</span>  <span class="token function-variable function">descargarUsuarios</span> <span class="token operator">=</span> cantidad  <span class="token operator">=&gt;</span>  <span class="token keyword">new</span>  <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span>reject<span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    <span class="token comment">//pasar la cantidad a la API</span>
+	 <span class="token keyword">const</span>  api <span class="token operator">=</span> <span class="token template-string"><span class="token string">`https://randomuser.me/api/?results=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>cantidad<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&amp;nat=us`</span></span><span class="token punctuation">;</span>
+    <span class="token comment">//llamado a ajax</span>
+    <span class="token keyword">const</span>  xhr <span class="token operator">=</span> <span class="token keyword">new</span>  <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//Abrir la conexión, le paso los datos</span>
+    
+    xhr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'GET'</span><span class="token punctuation">,</span> api <span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//toma 3 parametros, get o post, despues la url y si quieres que sea async true</span>
+    
+    <span class="token comment">//on load, leo la respuesta</span>
+    
+    xhr<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    
+    <span class="token keyword">if</span><span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>status <span class="token operator">==</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	    <span class="token function">resolve</span><span class="token punctuation">(</span>JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>responseText<span class="token punctuation">)</span><span class="token punctuation">.</span>results <span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//results lo estoy tomando de la api,con json.parse lo convierto de un string a un objeto js</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+    <span class="token function">reject</span><span class="token punctuation">(</span><span class="token function">Error</span><span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>statusText<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//optional (on error)</span>
+    
+    xhr<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>  <span class="token function">reject</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//send, la envio la respuesta</span>
+	    xhr<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token function">descargarUsuarios</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+     <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
+    miembros  <span class="token operator">=&gt;</span>  <span class="token function">imprimirHTML</span><span class="token punctuation">(</span>miembros<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    error  <span class="token operator">=&gt;</span>  console<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span>
+    <span class="token keyword">new</span>  <span class="token class-name">Error</span> <span class="token punctuation">(</span><span class="token string">'Hubo un error'</span> <span class="token operator">+</span> error<span class="token punctuation">)</span>
+	    <span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span>  <span class="token function">imprimirHTML</span><span class="token punctuation">(</span>usuarios<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span>  html <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+    usuarios<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>usuario  <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>usuario<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    html <span class="token operator">+=</span> <span class="token template-string"><span class="token string">`
+    &lt;li&gt;
+	    Nombre: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>usuario<span class="token punctuation">.</span>name<span class="token punctuation">.</span>first<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">  </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>usuario<span class="token punctuation">.</span>name<span class="token punctuation">.</span>last<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+	    Pais: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>usuario<span class="token punctuation">.</span>nat<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+	    Imagen:
+	    &lt;img src="</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>usuario<span class="token punctuation">.</span>picture<span class="token punctuation">.</span>medium<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">"&gt;
+	    &lt;/li&gt;
+	    `</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span>  contendorApp <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    contendorApp<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> html<span class="token punctuation">;</span>
+	   <span class="token punctuation">}</span>
+</code></pre>
+<p>Output:<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676533753308381205/unknown.png" alt="enter image description here"></p>
+<h3 id="programación-orientada-a-objetos">Programación orientada a objetos</h3>
+<p>La clase , para pasarle los argumentos hacia el objeto se utiliza el constructor, es lo que se va a ejecutar primero, una clase es un plano de una casa con la cual puedes construir multiples casas.<br>
+Un método es como una función dentro de una clase, las clases estan vigentes en las nuevas ver de js, en internet explorer tal vez no lo soporte.</p>
+<pre class=" language-js"><code class="prism  language-js">  
+
+    <span class="token keyword">class</span>  <span class="token class-name">Tarea</span> <span class="token punctuation">{</span>
+	   <span class="token function">constructor</span><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span>prioridad<span class="token punctuation">)</span><span class="token punctuation">{</span>
+	    <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+	    <span class="token keyword">this</span><span class="token punctuation">.</span>prioridad <span class="token operator">=</span> prioridad<span class="token punctuation">;</span>
+	    <span class="token punctuation">}</span>
+    <span class="token comment">//metodo</span>
+    <span class="token function">mostrar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	    <span class="token keyword">return</span>  <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>nombre<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> tiene una prioridad </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>prioridad<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">;</span>
+	     <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//Crear los objetos</span>
+    <span class="token keyword">let</span>  tarea1 <span class="token operator">=</span> <span class="token keyword">new</span>  <span class="token class-name">Tarea</span><span class="token punctuation">(</span><span class="token string">'Aprender js'</span><span class="token punctuation">,</span><span class="token string">'Alta'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span>  tarea2 <span class="token operator">=</span> <span class="token keyword">new</span>  <span class="token class-name">Tarea</span><span class="token punctuation">(</span><span class="token string">'Aprender React'</span><span class="token punctuation">,</span><span class="token string">'media'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tarea1<span class="token punctuation">.</span><span class="token function">mostrar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tarea2<span class="token punctuation">.</span><span class="token function">mostrar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Heredar clases y sus metodos, la ventaja principal de heredar es que puedes crear una clase padre y heredar todo eso a una clase distinta</p>
+<pre class=" language-js"><code class="prism  language-js">  
+
+    <span class="token keyword">class</span>  <span class="token class-name">Tarea</span> <span class="token punctuation">{</span>
+	<span class="token function">constructor</span><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span>prioridad<span class="token punctuation">)</span><span class="token punctuation">{</span>
+	    <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>prioridad <span class="token operator">=</span> prioridad<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//metodo</span>
+	<span class="token function">mostrar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	    <span class="token keyword">return</span>  <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>nombre<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> tiene una prioridad </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>prioridad<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">;</span>
+	    <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">class</span>  <span class="token class-name">ComprasPendientes</span>  <span class="token keyword">extends</span>  <span class="token class-name">Tarea</span> <span class="token punctuation">{</span>
+    <span class="token comment">//va heredar el constructor de arriba pero agregaremos un atributo extra "cantidad", con super hacemos referencia al constructor padre</span>
+    
+    <span class="token function">constructor</span><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span>prioridad<span class="token punctuation">,</span>cantidad<span class="token punctuation">)</span><span class="token punctuation">{</span>
+	    <span class="token keyword">super</span><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span>prioridad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token keyword">this</span><span class="token punctuation">.</span>cantidad <span class="token operator">=</span> cantidad<span class="token punctuation">;</span>
+	    <span class="token punctuation">}</span>
+    <span class="token comment">//aqui puedes crear metodos distintos , no te limita que clase padre los tenga o no, como tambien sobreescribirlos</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//Crear los objetos</span>
+    <span class="token keyword">let</span>  tarea1 <span class="token operator">=</span> <span class="token keyword">new</span>  <span class="token class-name">Tarea</span><span class="token punctuation">(</span><span class="token string">'Aprender js'</span><span class="token punctuation">,</span><span class="token string">'Alta'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span>  tarea2 <span class="token operator">=</span> <span class="token keyword">new</span>  <span class="token class-name">Tarea</span><span class="token punctuation">(</span><span class="token string">'Aprender React'</span><span class="token punctuation">,</span><span class="token string">'media'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+	     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tarea1<span class="token punctuation">.</span><span class="token function">mostrar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tarea2<span class="token punctuation">.</span><span class="token function">mostrar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">//compras</span>
+    <span class="token keyword">let</span>  compra1 <span class="token operator">=</span> <span class="token keyword">new</span>  <span class="token class-name">ComprasPendientes</span><span class="token punctuation">(</span><span class="token string">'jabon'</span><span class="token punctuation">,</span><span class="token string">'urgente'</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">//la ventaja de heredar una clase dentro de otra es que puedes utlizar sus metodos tambien</span>
+    
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>compra1<span class="token punctuation">.</span><span class="token function">mostrar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+<p>Output:<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676575779206856744/unknown.png" alt="enter image description here"></p>
+<h3 id="módulos-en-es6">Módulos en ES6</h3>
+<p>Nos va permitir separar nuestros archivos dentro de distintos e importar únicamente lo que necesitamos, veremos mas a fondo sobre esto en React.</p>
+<blockquote>
+<p>Eso es todo! (la verdad no, es infinito y se va actualizando casi cada<br>
+dia asi que resignate a seguir estudiandolo ) , pero bueno ya<br>
+dominas lo metodos mas utilizados y el cual te ayudara a abrirte a<br>
+nuevas tecnologías con typescript etc, tanto en Frontend como en<br>
+Backend.</p>
+</blockquote>
+<h1 id="react">React</h1>
+<p><img src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-512.png" alt="enter image description here"><br>
+<strong>React</strong> es una biblioteca escrita en JavaScript, desarrollada en Facebook <strong>para</strong> facilitar la creación <strong>de</strong> componentes interactivos, reutilizables, <strong>para</strong> interfaces <strong>de</strong> usuario.</p>
+<p>Mas adelante podemos aprender a desarrollar APP moviles con React Native!<br>
+<img src="https://cdn.discordapp.com/attachments/597970050338783235/674407741057662976/84670024_129482988553976_7341522907702493184_n-removebg-preview.png" alt="enter image description here"></p>
+<h2 id="crear-app">Crear APP</h2>
+<p>Para crear una nueva aplicación, puede elegir uno de los siguientes métodos:</p>
+<p><strong>npx:</strong></p>
+<pre><code>      npx create-react-app my-app
+      cd my-app
+      npm start
+</code></pre>
+<p><strong>npm:</strong></p>
+<pre><code>    npm init react-app my-app
+</code></pre>
+<p><strong>Yarn</strong></p>
+<pre><code>    yarn create react-app my-app
+</code></pre>
+<p><img src="https://cdn.discordapp.com/attachments/517191297279459328/674258156339068940/glup.png" alt="enter image description here"></p>
+<blockquote>
+<p>Nota: Segun muchos foros de gente culta , la mejor opción es Yarn debido a su velocidad, al usar create react app te evitas el tener que configurar babel.</p>
+</blockquote>
+<h2 id="métodos-generales">Métodos generales</h2>
+<h3 id="componentes-y-rende-rizado">Componentes y rende-rizado</h3>
+<blockquote>
+<p>nota: Un <strong>componente en React</strong> simplemente es una pieza de UI (user interface), que tiene una funcionalidad independiente definida. Al crearlo se suele escribir empezando con mayuscula por ejemplo  “PrimerComponente,js”</p>
+</blockquote>
+<p>Los componentes nos permiten separar la interfaz en piezas independientes, existen dos tipos de componentes , los componentes <strong>funcionales</strong> y de <strong>clase</strong>.<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676857545301688330/unknown.png" alt="enter image description here"><br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676858189421215784/unknown.png" alt="enter image description here"></p>
+<pre class=" language-js"><code class="prism  language-js"> <span class="token keyword">function</span>  <span class="token function">Hello</span> <span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">{</span>	
+      <span class="token keyword">return</span>  <span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span><span class="token punctuation">{</span>props<span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span>
+  <span class="token punctuation">}</span>
+</code></pre>
+<p>Igual se puede utilizar una clase de <strong>ES6</strong> para definir el componente</p>
+<pre class=" language-js"><code class="prism  language-js">  <span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span>Component<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
+  
+  <span class="token keyword">class</span> <span class="token class-name">MiPrimerComponente</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>  
+        <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+  	       <span class="token keyword">return</span><span class="token punctuation">(</span>  <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span>Soy un componente<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span>  
+  		          <span class="token punctuation">)</span>  
+  	            <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span><span class="token keyword">export</span> <span class="token keyword">default</span> MiPrimerComponente<span class="token punctuation">;</span>
+</code></pre>
+<p>En este caso simplemente es un componente que retorna un elemento <code>**h1**</code> de seguro en algún sitio se lo va a importar</p>
+<pre><code>import MiPrimerComponente from ‘./ruta/a/MiPrimerComponente’
+</code></pre>
+<p>y luego se lo usará</p>
+<pre><code>&lt;MiPrimerComponente /&gt;
+</code></pre>
+<p>Cabe destacar que un componente puede estar compuesto por otros componentes, formando así una estructura de árbol.</p>
+<p>La magia de los componentes esta en tu corazón ❤…️!!! AJAJA… ya quisieras bruh, la verdadera magia esta en los <strong>props</strong> y el <strong>state</strong> de los componentes.<br>
+<img src="https://cdn.discordapp.com/attachments/667144423397654548/674255199254085672/lolen.png" alt="enter image description here"></p>
+<pre class=" language-js"><code class="prism  language-js">    <span class="token keyword">class</span>  <span class="token class-name">Hello</span>  <span class="token keyword">extends</span>  <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+   		<span class="token function">render</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   				<span class="token keyword">return</span>  <span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span>
+   				  <span class="token punctuation">}</span>
+   			<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>nota :  Esta ultima es la mas utilizada durante el desarrollo, <strong>render</strong> nos entregara los métodos que queremos rende-rizar, nuestro método render siempre debe devolver 1 solo elemento y este puede tener tantos sub-elementos como necesitemos!</p>
+</blockquote>
+<p>Un ejemplo de lo anteriormente mencionado en relación al render</p>
+<pre class=" language-js"><code class="prism  language-js">     <span class="token keyword">class</span>  <span class="token class-name">Text</span>  <span class="token keyword">extends</span>  <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+   	    <span class="token function">render</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   		    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+   			    <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+   				    <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>text<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>  
+   				    <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>number<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+   			    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+   				    <span class="token punctuation">)</span>
+   			<span class="token punctuation">}</span>
+       <span class="token punctuation">}</span>
+</code></pre>
+<h2 id="props">Props</h2>
+<p>Los props son la manera en que un componente superior manda información a componentes inferiores. Puedes pasarle datos a un componente por medio de los props.<br>
+Los props siempre van de componentes superiores a componentes inferiores, es por eso que React se ganó la fama de tener un <strong>flujo de datos uni-direccional.</strong><br>
+Los datos de props por lo general los debes declarar en el componente principal (app.js), la que tiene acceso a todos los componentes.<br>
+En react debemos usar los componentes como funciones puras ,  solo que sus <strong>parámetros</strong> son las <strong>props</strong></p>
+<p>Ejemplo de una función pura:</p>
+<pre class=" language-js"><code class="prism  language-js">  <span class="token keyword">function</span> <span class="token function">pureFoo</span> <span class="token punctuation">(</span> a<span class="token punctuation">,</span> b <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+  	    <span class="token punctuation">}</span>
+  console<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span> <span class="token function">pureFoo</span><span class="token punctuation">(</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 6 </span>
+  
+  
+  
+</code></pre>
+<p><a href="https://www.youtube.com/watch?v=m7OWXtbiXX8">Video ejemplo Props</a></p>
+<blockquote>
+<p>nota: React no permite que las props puedan ser modificadas, las props son de solo lectura , son <strong>inmutables</strong> , esto quiere decir que <strong>no podemos alterar su valor</strong>. En react no debemos modificar sus propiedades , debemos pensar que son puras.</p>
+</blockquote>
+<h3 id="default-props">Default props</h3>
+<p>Es utilizado en caso de que poseamos un props vació , en vez de no entregar nada entrega un valor por defecto<br>
+En el siguiente código se muestra como creamos un component , pero al hacer el llamado lo tenemos vació</p>
+<pre class=" language-js"><code class="prism  language-js"> <span class="token keyword">class</span>  <span class="token class-name">Title</span>  <span class="token keyword">extends</span>  <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+     <span class="token function">render</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ 	    <span class="token keyword">return</span>  <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span>
+ 		    <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>text<span class="token punctuation">}</span>
+ 			    <span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span>
+     <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+ <span class="token comment">//Aqui usamos el default props</span>
+ Title<span class="token punctuation">.</span>defaultProps <span class="token operator">=</span> <span class="token punctuation">{</span>
+     text<span class="token punctuation">:</span>  <span class="token string">'Titulo por defecto'</span>
+ <span class="token punctuation">}</span>
+ 
+ <span class="token comment">// Aca realizamos el llamado a title pero sin entregarle un valor</span>
+ <span class="token keyword">class</span>  <span class="token class-name">App</span>  <span class="token keyword">extends</span>  <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+     <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ 	    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+ 		    <span class="token operator">&lt;</span>div  className<span class="token operator">=</span><span class="token string">"APP"</span><span class="token operator">&gt;</span>
+ 			    <span class="token operator">&lt;</span>Title  <span class="token operator">/</span><span class="token operator">&gt;</span>
+ 			<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+ 			<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 		<span class="token punctuation">}</span>
+ 	<span class="token punctuation">}</span> 
+ 	
+
+</code></pre>
+<h2 id="state">State</h2>
+<p>Además de inicializar el state en el constructor, existe otra forma de inicializar el state de tu componente de forma fácil y rápida. Antes de entrar en detalle, veamos el ejemplo de cómo lo haríamos normalmente en el constructor, para un componente que necesita guardar en el estado un contador.</p>
+<p><strong>State usando el constructor:</strong></p>
+<pre class=" language-js"><code class="prism  language-js"><span class="token keyword">class</span> <span class="token class-name">Contador</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>contador<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span>El contador está a <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>contador<span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code>//Output &lt;Contador/&gt;   "el contador esta a 0".
+</code></pre>
+<blockquote>
+<p>Siempre que deseas agregar una clase a un elemento html debe ser con <strong>className</strong> por ejemplo , ese mismo classname lo podemos igual vincular al CSS para cambiar su diseño.<br>
+<img src="https://cdn.discordapp.com/attachments/675751591323893764/676829532266692628/unknown.png" alt="enter image description here"></p>
+</blockquote>
+<p>Existe una <a href="https://github.com/tc39/proposal-class-fields">proposición llamada “Class Fields”</a><br>
+Esta proposición permite inicializar propiedades de la clase como si fuesen campos. De forma que para inicializar la propiedad <code>this.state</code> no tendríamos que hacerlo en el constructor, si no que podríamos hacerlo directamente en la clase. Veamoslo en código:</p>
+<pre class=" language-js"><code class="prism  language-js"><span class="token keyword">class</span> <span class="token class-name">Contador</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+  state <span class="token operator">=</span> <span class="token punctuation">{</span>contador<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span>El contador está a <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>contador<span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="setstate">setState</h3>
+<p>Hay  cosas que debes saber sobre  <code>setState()</code>.<br>
+<strong>No modifiques el estado directamente</strong></p>
+<p>Actualizar el dato mediante setState()</p>
+<pre class=" language-jsx"><code class="prism  language-jsx"><span class="token keyword">class</span> <span class="token class-name">Button</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span> clicked<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>handleClick <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>handleClick<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">handleClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> clicked<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>clicked<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Gracias<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleClick<span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span>
+        ¡Haz clic en mí<span class="token operator">!</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code>Propagación del estado
+</code></pre>
+<h1 id="sql">SQL</h1>
+<h2 id="comandos-básicos">Comandos básicos</h2>
+<p><img src="https://cdn.discordapp.com/attachments/210973784432181248/674319010908733471/585589636974510143.png" alt="enter image description here"></p>
+<h3 id="definiendo-cómo-es-almacenada-la-información.">Definiendo cómo es almacenada la información.</h3>
+<ul>
+<li><a href="https://mariadb.com/kb/en/create-database/">CREATE DATABASE</a>  se utiliza para crear una nueva base de datos vacía.</li>
+<li><a href="https://mariadb.com/kb/en/drop-database/">DROP DATABASE</a>  se utiliza para eliminar completamente una base de datos existente.</li>
+<li><a href="https://mariadb.com/kb/en/create-table/">CREATE TABLE</a>  se utiliza para crear una nueva tabla, donde la información se almacena realmente.</li>
+<li><a href="https://mariadb.com/kb/en/alter-table/">ALTER TABLE</a>  se utiliza para modificar una tabla ya existente.</li>
+<li><a href="https://mariadb.com/kb/en/drop-table/">DROP TABLE</a>  se utiliza para eliminar por completo una tabla existente.</li>
+</ul>
+<h3 id="manipulando-los-datos.">Manipulando los datos.</h3>
+<ul>
+<li><a href="https://mariadb.com/kb/en/select/">SELECT</a>  se utiliza cuando quieres leer (o seleccionar) tus datos.</li>
+<li><a href="https://mariadb.com/kb/en/insert/">INSERT</a>  se utiliza cuando quieres añadir (o insertar) nuevos datos.</li>
+<li><a href="https://mariadb.com/kb/en/update/">UPDATE</a>  se utiliza cuando quieres cambiar (o actualizar) datos existentes.</li>
+<li><a href="https://mariadb.com/kb/en/delete/">DELETE</a>  se utiliza cuando quieres eliminar (o borrar) datos existentes.</li>
+<li><a href="https://mariadb.com/kb/en/replace/">REPLACE</a>  se utiliza cuando quieres añadir o cambiar (o reemplazar) datos nuevos o ya existentes.</li>
+<li><a href="https://mariadb.com/kb/en/truncate/">TRUNCATE</a>  se utiliza cuando quieres vaciar (o borrar) todos los datos de la plantilla.</li>
+</ul>
+<h1 id="wordpress">Wordpress</h1>
+<h2 id="instalación">Instalación</h2>
+<p><img src="https://cdn.discordapp.com/attachments/675751591323893764/675838808024940545/586236764939616277.gif" alt="enter image description here"><br>
+Necesitaremos XAMPP , ademas de descargar el winrar de <a href="https://cl.wordpress.org/download/">https://cl.wordpress.org/download/</a></p>
+<p>seguido de ello ingresamos de forma local , AH! pero ojo antes de todo aprende PHP</p>
+<p><img src="https://cdn.discordapp.com/attachments/675751747003744292/675751819762335795/unknown.png" alt="enter image description here"><br>
+Luego creamos una base de datos mysql e ingresamos los campos para que wordpress rellene nuestra base de datos</p>
+<p><img src="https://cdn.discordapp.com/attachments/675751747003744292/675752687127625740/unknown.png" alt="enter image description here"></p>
+<blockquote>
+<p>Ahora instalamos , recuerda no dejar admin y admin como credenciales<br>
+ya que te pueden hackear y F el sitio web, cuando se suba a producción<br>
+<img src="https://i.pinimg.com/originals/4b/b9/52/4bb9527e4ecbe2481fbe282d6f2defc6.gif" alt="enter image description here"><br>
+debes recordar cambiar las credenciales a algo mas dificil.</p>
+</blockquote>
+<p><img src="https://cdn.discordapp.com/attachments/675751747003744292/675753498943553585/unknown.png" alt=""></p>
+<p>BIEN! terminado esto ya debes tener acceso a tu sitio en WP , en caso de que no verifica las credenciales<br>
+<img src="https://cdn.discordapp.com/attachments/675751747003744292/675754813517987840/unknown.png" alt=""></p>
+<p>Ahora depende de ti de que deseas realizar , si un template de información o algo mas avanzado como una tienda virtual!</p>
+<p><img src="https://cdn.discordapp.com/attachments/675751591323893764/675839779665084417/586236766026072064.gif" alt="enter image description here"></p>
+</div>
+</body>
+
+</html>
